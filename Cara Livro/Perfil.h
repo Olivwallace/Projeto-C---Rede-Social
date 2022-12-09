@@ -20,7 +20,7 @@
 
 #define MAX_NOME  (45 + 1)
 #define MAX_LOGIN (15 + 1)
-#define MAX_SENHA (6 + 1)
+#define MAX_SENHA (7 + 1)
 
 //-------- Fim Constantes
 

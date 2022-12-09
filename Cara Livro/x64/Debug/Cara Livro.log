@@ -1,4 +1,4 @@
 ﻿  CaraLivro.c
-C:\Users\Walla\Desktop\Cara Livro\CaraLivro.c(55,10): warning C4101: 'lixo': variável local não referenciada
-C:\Users\Walla\Desktop\Cara Livro\CaraLivro.c(71,10): warning C4101: 'lixo': variável local não referenciada
-  Cara Livro.vcxproj -> C:\Users\Walla\Desktop\Cara Livro\x64\Debug\Cara Livro.exe
+C:\Users\Walla\Desktop\Rede\Cara Livro\CaraLivro.c(55,10): warning C4101: 'lixo': variável local não referenciada
+C:\Users\Walla\Desktop\Rede\Cara Livro\CaraLivro.c(77,10): warning C4101: 'lixo': variável local não referenciada
+  Cara Livro.vcxproj -> C:\Users\Walla\Desktop\Rede\Cara Livro\x64\Debug\Cara Livro.exe

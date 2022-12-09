@@ -42,9 +42,7 @@ boolean_t cadastrarNovoPerfil(caraLivro_t* estruturaSistema);
 int main(int argc, char** argv){
     caraLivro_t redeSocial;
     inicializaRede(&redeSocial);
-    cadastrarNovoPerfil(&redeSocial);
-    cadastrarNovoPerfil(&redeSocial);
-
+    
 
     return SUCESSO;
 }
@@ -54,10 +52,16 @@ void removeBarraEne(char *string) {
     int i;
     char lixo;
     for (i = 0; i < strlen(string); i++) {
-        if (string[i] == '\n') {
+        if (string[i]  == '\n') {
             string[i] = '\0';
         }
     }
+}
+
+void lerString(char* endArmazenar, int MAX_STR) {
+    scanf("\n");
+    fgets(endArmazenar, MAX_STR, stdin);
+    removeBarraEne(endArmazenar);
 }
 
 void inicializaRede(caraLivro_t* estruturaSistema) {
@@ -74,22 +78,19 @@ boolean_t cadastrarNovoPerfil(caraLivro_t* estruturaSistema) {
 
     char nome[MAX_NOME], login[MAX_LOGIN], senha[MAX_SENHA];
 
-    criarLinha(_LINHA_DIVISORIA_, _CENTRO_, 50);
+    criaLinhaCabecalho(_CENTRO_, 50, "NOVO CADASTRO ");
     printf("\n\tEscolha seu login [MAX 15 Caracteres]: ");
-    fgets(login, MAX_LOGIN, stdin);
-    removeBarraEne(login);
+    lerString(login, MAX_LOGIN);
 
     if (buscaPerfil(vertorPerfis, qtdPerfisAtual, login) == NULL) {
-        estruturaSistema->vetorPerfis = realloc(estruturaSistema->vetorPerfis, (qtdPerfisAtual + 1) * sizeof(perfil_t*));
+        estruturaSistema->vetorPerfis = (perfil_t**) realloc(estruturaSistema->vetorPerfis, (qtdPerfisAtual + 1) * sizeof(perfil_t*));
         if (estruturaSistema->vetorPerfis != NULL) {
 
-            printf("\tEscolha seu senha [MAX 6 Caracteres]: ");
-            fgets(senha, MAX_SENHA, stdin);
-            removeBarraEne(senha);
+            printf("\tEscolha seu senha [MAX 7 Caracteres]: ");
+            lerString(senha, MAX_SENHA);
 
             printf("\tDigite seu nome [MAX 50 Caracteres]: ");
-            fgets(nome, MAX_NOME, stdin);
-            removeBarraEne(nome);
+            lerString(nome, MAX_NOME);
 
             estruturaSistema->vetorPerfis[qtdPerfisAtual] = criarNovoPerfil(nome, login, senha, (qtdPerfisAtual + 1));
             estruturaSistema->numPerfis++;
@@ -100,4 +101,28 @@ boolean_t cadastrarNovoPerfil(caraLivro_t* estruturaSistema) {
     }
 
     return cadastrado;
+}
+
+boolean_t realizarLogin(caraLivro_t* estruturaSistema) {
+    char login[MAX_LOGIN], senha[MAX_SENHA];
+    boolean_t autenticado = FALSE;
+    perfil_t* perfilEncontrado;
+
+    criaLinhaCabecalho(_CENTRO_, 50, "REALIZAR LOGIN ");
+    printf("\n\tSeu login [MAX 15 Caracteres]: ");
+    lerString(login, MAX_LOGIN);
+    perfilEncontrado = buscaPerfil(estruturaSistema->vetorPerfis, estruturaSistema->numPerfis, login);
+    
+    if (perfilEncontrado == NULL) {
+        criaLinhaCabecalho(_CENTRO_, 50, "LOGIN INVALIDO");
+    }
+    else {
+        printf("\n\tSua Senha [MAX 15 Caracteres]: ");
+        lerString(senha, MAX_SENHA);
+        autenticado = autenticarLogin(estruturaSistema->vetorPerfis, estruturaSistema->numPerfis, login, senha);
+        if (autenticado) estruturaSistema->perfilAtivo = perfilEncontrado;
+        else criaLinhaCabecalho(_CENTRO_, 50, "SENHA INVALIDA ");
+    }
+
+    return autenticado;
 }
