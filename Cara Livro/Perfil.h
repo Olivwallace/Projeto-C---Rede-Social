@@ -3,24 +3,27 @@
 #ifndef __PERFIL_h__
 #define __PERFIL_h__
 
-//------- Inclusoes
+//------- Inclusões
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
+#include <stdint.h>
 
+#include "ListaE.h" 
+#include "Grafo.h"
 #include "Postagem.h"
-#include "ListaE.h"
+#include "Pilha.h"
 
-//-------- Fim Inclusoes
+//------- Fim Inclusões
 
 
 //-------- Constantes
 
 #define MAX_NOME  (45 + 1)
 #define MAX_LOGIN (15 + 1)
-#define MAX_SENHA (6 + 1)
+#define MAX_SENHA (7 + 1)
+#define MAX_CONTEUDO (50 + 1)
 
 //-------- Fim Constantes
 
@@ -48,7 +51,7 @@ struct perfil_s {
 	uint32_t idUnicioPerfil;
 	dadosPerfil_t dadosPerfil;
 	listaE_t postagens;
-	uint32_t posicaoGrafo;
+	verticeGrafo_t* endGrafo;
 	boolean_t visibilidade;
 };
 
@@ -59,9 +62,31 @@ typedef struct perfil_s perfil_t;
 
 //-------- Assinatura Funcoes 
 
-boolean_t autenticarLogin(perfil_t** perfisRede, uint32_t qtdPerfis, char* login, char* senha);
-perfil_t* buscaPerfil(perfil_t** perfisRede, uint32_t qtdPerfis, char* login);
+boolean_t autenticarLogin(perfil_t** perfisRede, uint32_t numPerfis, char* login, char* senha);
+perfil_t* encontrarPerfil(perfil_t** perfisRede, uint32_t numPerfis, char* login);
 perfil_t* criarNovoPerfil(char* nome, char* login, char* senha, uint32_t idUnico);
+boolean_t desativarPerfil(perfil_t* usuario);
+
+boolean_t novoPostPerfil(perfil_t* usuario);
+boolean_t deletarPostagem(perfil_t* usuario, post_t* postagem);
+boolean_t curtiPostagem(perfil_t* usuario, post_t* postagem);
+boolean_t descurtirPostagem(perfil_t* usuario, post_t* postagem);
+void imprimirPostagens(perfil_t* perfil, boolean_t postDetalhado);
+
+
+boolean_t adicionarAmizade(perfil_t* usuario, perfil_t* perfilVisitado, grafo_t* grafo);
+boolean_t desfazerAmizade(perfil_t* usuario, perfil_t* perfilVisitado, grafo_t* grafo);
+
+
+//----<<<<
+
+/*
+void visitarPerfil(perfil_t* usuarioLogado, perfil_t* perfilOrigem, perfil_t* perfilVisitado, perfil_t** perfisRede);
+
+void imprimirAmigos(perfil_t* perfil, perfil_t** perfisRede);
+
+void imprimirTimeLine(perfil_t* usuario, perfil_t** perfisRede);
+*/
 
 //-------- Fim Assinatura Funcoes 
 

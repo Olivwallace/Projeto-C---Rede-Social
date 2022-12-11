@@ -4,14 +4,16 @@
 #define __LISTA_ENCADEADA_h__
 
 
-//------- Inclusoes
+//------- Inclusões
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdint.h>
-#include "Postagem.h"
 
-//-------- Fim Inclusoes
+#include "Uteis.h"
+
+//------- Fim Inclusões
 
 
 //-------- Constantes
@@ -26,13 +28,13 @@
 
 //-------- Dado Armazenado Lista
 
-struct tad_s{
+/*struct tad_s{
 	char string[150];
 	uint32_t inteiro;
 	post_t * postagem;
 };
 
-typedef struct tad_s tad_t;
+typedef struct tad_s tad_t;*/
 
 typedef void* infoLista_t;
 
@@ -45,7 +47,7 @@ typedef uint32_t boolean_t;
 
 typedef void(*imprimirDado_f)(infoLista_t dadoImprimir);											//Prototipo de uma funcao que ira imprimir Lista.
 typedef boolean_t(*atribuirDado_f)(infoLista_t* enderecoArmazenar, infoLista_t dadoArmazenar);		//Prototipo de uma funcao que ira inserir dado na Lista.
-typedef uint32_t(*compararDado_f)(infoLista_t dadoUm, infoLista_t dadoDois);						//Prototipo de uma funcao que ira comparar dados na Lista.
+typedef int(*compararDado_f)(infoLista_t dadoUm, infoLista_t dadoDois);								//Prototipo de uma funcao que ira comparar dados na Lista.
 
 //-------- Fim Modelagem de Funcoes de Manipulacao e tipos
 

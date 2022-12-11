@@ -1,11 +1,13 @@
-//------- Inclusoes
+//------- Inclusões
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdint.h>
-#include "ListaE.h"
 
-//-------- Fim Inclusoes
+#include "ListaE.h" 
+
+//------- Fim Inclusões
 
 
 //-------- Funcoes Lista Encadeada
@@ -76,7 +78,7 @@ boolean_t insereFimLista(listaE_t* lista, infoLista_t dado, atribuirDado_f metod
 			atual = atual->proxItem;
 		}
 
-		conseguiuInserir = metodoAtribuicao(novo, dado);
+		conseguiuInserir = metodoAtribuicao(&novo->dadoArmazenado, dado);
 
 		if (conseguiuInserir) {
 
@@ -119,7 +121,7 @@ boolean_t insereOrdenado(listaE_t* lista, infoLista_t dado, compararDado_f metod
 			atual = atual->proxItem;
 		}
 
-		conseguiuInserir = metodoAtribuicao(novo, dado);
+		conseguiuInserir = metodoAtribuicao(&novo->dadoArmazenado, dado);
 
 		if (conseguiuInserir) {
 

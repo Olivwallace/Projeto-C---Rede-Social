@@ -3,14 +3,17 @@
 #ifndef __MENUS_h__
 #define __MENUS_h__
 
-//------- Inclusoes
+//------- Inclusões
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
+#include <stdint.h>
 
-//-------- Fim Inclusoes
+
+#include "Uteis.h" 
+
+//------- Fim Inclusões
 
 //-------- Constantes
 
@@ -27,16 +30,6 @@ typedef int opcao_t;
 
 
 //-------- Enumeradores
-
-/// <summary>
-///		Enumerador Posicionamento Texto
-/// </summary>
-enum {
-	_CENTRO_ = 1,
-	_DIREITA_,
-	_ESQUERDA_
-};
-
 
 /// <summary>
 ///		Enumerador Funcionalidades Menu Principal
@@ -60,7 +53,6 @@ enum {
 	//_ACOES_PERFIL_,
 };
 
-
 /// <summary>
 ///		Enumerador Funcionalidades Menu Principal
 /// </summary>
@@ -68,33 +60,35 @@ enum {
 	_AMIZADES_ = 1,
 	_MINHAS_POSTAGENS_,
 	_CONFIG_PERFIL_,
-	_ACOES_PERFIL_
+	_CRIAR_POST_,
+	_ADICIONAR_AMIGOS_
 };
 
+enum {
+	_CURTIR_ = 1,
+	_DETALHES_,
+	_ROLAR_FEED_,
+	_RETORNAR_AO_PERFIL
+};
 
 /// <summary>
-///		Enumerador Funcionalidades Menu Principal
+///		Enumerador Funcionalidades Menu Acoes do Perfil
 /// </summary>
-enum {
-	_LINHA_MENU_,
-	_LINHA_DIVISORIA_
-};
+
+
 
 //-------- Fim Enumeradores 
 
 
 //-------- Assinatura Funcoes 
 
-void criarLinha(int tipoLinha, int alinhamentoPainel, int tamanhoLinha);
-void criaLinhaCabecalho(int alinhamentoTexto, int tamanhoDaTela, char* textoCabecalho);
-void criaLinhaTexto(int alinhamentoTexto, int tamanhoDaTela, char* textoLinha);
-
 opcao_t lerOpcaoMenu();
 
 opcao_t menuPrincipal();
 opcao_t menuFuncionalidadesPerfil(char* nomeUsuarioAtual);
 opcao_t menuMeuPerfil(char* nomeUsuarioAtual);
-
+opcao_t menuMeuPerfil(char* nomeUsuarioAtual);
+opcao_t menuMeuTimeLine();
 
 //void validaMenuInicial();
 

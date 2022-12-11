@@ -3,23 +3,26 @@
 #ifndef __POSTAGEM_h__
 #define __POSTAGEM_h__
 
-//------- Inclusoes
+//------- Inclusões
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stdint.h>
 
 
-//-------- Fim Inclusoes
+#include "tabHash.h" 
+#include "ListaE.h"
+#include "Uteis.h"
+
+//------- Fim Inclusões
 
 
 //-------- Constantes
 
+#define MAX_TABELA 1000
+
 //-------- Fim Constantes
-
-
-//-------- Dado Armazenado 
-
-//-------- Fim Dado Armazenado
 
 
 //-------- Modelagem de Funcoes de Manipulacao e tipos 
@@ -32,17 +35,25 @@ typedef char infoPost_t;
 //-------- Estrutura 
 
 struct post_s {
+	char donoPost[50 + 1];
 	infoPost_t post[50 + 1];
-
+	uint32_t idPost;
+	tabelaHash_t tabelaInteracoes;
 };
 
 typedef struct post_s post_t;	
+
 //-------- Fim Estrutura 
 
 
 //-------- Assinatura Funcoes 
 
-
+post_t* postagemCria(infoPost_t* info, char *usuario, uint32_t idPost);
+boolean_t postagemDeleta(post_t* postagem);
+void postagemImprime(post_t* postagem, char* loginAtual);
+void postagemDetalhadaImprime(post_t* postagem, itemTH_t usuario);
+boolean_t addPostPerfil(infoLista_t* end, infoLista_t dado);
+int postagemCompara(infoLista_t postagemUm, infoLista_t postagemDois);
 
 //-------- Fim Assinatura Funcoes 
 
